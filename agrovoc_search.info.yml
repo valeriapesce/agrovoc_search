@@ -6,7 +6,7 @@ core: 10.x
 core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:content_translation
-  - aims_agrovoc_migrate_csv: name: aims_agrovoc_migrate_csv
+  - aims_agrovoc_migrate_csv: aims_agrovoc_migrate_csv
   - search_api:search_api
   - search_api_autocomplete:search_api_autocomplete
   - views_accordion:views_accordion
