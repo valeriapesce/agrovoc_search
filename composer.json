@@ -32,6 +32,6 @@
 		"drupal/entityreference_extensions": "^1.4",		
 		"drupal/dropdown_language": "^4.0",
 		"drupal/token": "^1.13",		
-		"drupal/taxonomy_term_depth": "^2.6",		
+		"drupal/taxonomy_term_depth": "^2.6"	
     }
 }
