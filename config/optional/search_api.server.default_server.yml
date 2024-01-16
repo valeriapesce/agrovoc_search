@@ -1,11 +1,8 @@
-uuid: f9b360d3-e82a-4a87-82a5-7221cffec3b6
 langcode: en
 status: false
 dependencies:
   module:
     - search_api_db
-_core:
-  default_config_hash: jHQatMW-yK0Qx_lugNuilJ0KNjEiIve4SCN07jwW1bg
 id: default_server
 name: 'Database Server'
 description: 'Default database server created by the Database Search Defaults module'
