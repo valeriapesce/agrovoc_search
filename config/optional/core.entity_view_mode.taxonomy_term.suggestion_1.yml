@@ -1,0 +1,10 @@
+uuid: e55ae378-5edf-489e-b1f3-062b8da7261a
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.suggestion_1
+label: Suggestion
+targetEntityType: taxonomy_term
+cache: true
