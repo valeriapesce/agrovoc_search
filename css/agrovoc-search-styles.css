@@ -1,0 +1,15 @@
+<style>
+.small-text {font-size:0.9em;}
+.padding-top {padding-top:15px;}
+.padding-bottom {padding-bottom:15px;}
+.padding-right {padding-right:4px;}
+.inline {display: inline-block;}
+.right-border {border-right: 1px solid #676767;}
+.preferred {font-size:1.3em; font-weight: bold;}
+.no-line-space {margin-bottomo:0px; margin-top:0px; padding-bottom:0px; padding-top:4px;}
+ul.dropbutton a {text-decoration: none;}
+.ui-accordion-header-active {
+    border: 1px solid maroon;
+    background: #4F87B1;
+}
+</style>
