@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the AIMS AGROVOC Search module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function agrovoc_search_install() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}
+
+

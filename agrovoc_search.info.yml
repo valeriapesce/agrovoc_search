@@ -1,0 +1,20 @@
+type: module
+name: AIMS AGROVOC Search
+description: 'Module to create an AGROVOC search view.'
+package: AIMS
+core: 10.x
+core_version_requirement: ^9 || ^10
+dependencies:
+  - drupal:content_translation
+  - aims_agrovoc_migrate_csv: name: aims_agrovoc_migrate_csv
+  - search_api:search_api
+  - search_api_autocomplete:search_api_autocomplete
+  - views_accordion:views_accordion
+  - ds:ds
+  - ds_extras:ds_extras
+  - entityreference_extensions:entityreference_extensions
+  - dropdown_language:dropdown_language
+  - token:token
+  - taxonomy_term_depth:taxonomy_term_depth
+  
+  
