@@ -1,0 +1,48 @@
+<?php
+use Drupal\views\ViewExecutable;
+
+/**
+* Implements hook_views_pre_render().
+*/
+function agrovoc_search_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'agrovoc_search_searchapi')) {
+    $view->element['#attached']['library'][] = 'agrovoc_search/agrovoc-search';
+  }
+}
+
+function agrovoc_search_search_api_autocomplete_suggestions_alter($suggestions, $alter_params) {
+
+	// If exact word is in suggestionss, put it as first element of the suggestions array
+	
+	/* Set in Search Api Autocomplete:
+	$alter_params = [
+		'query' => $query,
+		'search' => $search,
+		'incomplete_key' => $incomplete,
+		'user_input' => $keys,
+	];
+	$this->moduleHandler()
+		->alter('search_api_autocomplete_suggestions', $suggestions, $alter_params);
+	*/
+	
+	// $alter_params->$query->condition('u.uid', $user->uid, '<>');
+
+	$exact_sugg = null; 
+	$ix = 0;
+	$ss = &$suggestions;
+	foreach($ss as $sugg) {
+	  if ($sugg->getSuggestionPrefix() . $sugg->getUserInput() . $sugg->getSuggestionSuffix() == $alter_params['incomplete_key']) {
+		  $exact_sugg = clone $sugg;
+		  break;
+	  }
+	  $ix= $ix+1;
+	}
+	if (!is_null($exact_sugg)) {
+		unset($ss[$ix]);
+		array_values($ss);
+		//$exact_sugg->setResultsCount(100);
+		array_unshift($ss, $exact_sugg);
+	}
+} 
+
+

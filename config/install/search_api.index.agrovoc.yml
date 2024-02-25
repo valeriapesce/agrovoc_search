@@ -5,9 +5,12 @@ dependencies:
     - field.storage.taxonomy_term.field_agrovoc_alternative_labels
     - field.storage.taxonomy_term.field_agrovoc_definition
     - field.storage.taxonomy_term.field_agrovoc_related
+    - field.storage.taxonomy_term.field_agrovoc_transliterated_def
+    - field.storage.taxonomy_term.field_agrovoc_transliterated_lab
+    - field.storage.taxonomy_term.field_agrovoc_transliterated_tit
     - field.storage.taxonomy_term.field_agrovoc_uri
     - field.storage.taxonomy_term.field_fao_agrovoc_code
-    - search_api.server.default_server
+    - search_api.server.core_database_server_for_agrovoc
   module:
     - taxonomy_term_depth
     - taxonomy
@@ -29,17 +32,16 @@ field_settings:
     label: 'Alternative labels'
     datasource_id: 'entity:taxonomy_term'
     property_path: field_agrovoc_alternative_labels
-    type: text
-    boost: 1.2
+    type: string
     dependencies:
       config:
         - field.storage.taxonomy_term.field_agrovoc_alternative_labels
-  field_agrovoc_alternative_labels_tr:
-    label: 'Alternative labels translit'
+  field_agrovoc_alternative_labels_ft:
+    label: 'Alternative labels fulltext'
     datasource_id: 'entity:taxonomy_term'
     property_path: field_agrovoc_alternative_labels
     type: text
-    boost: 1.2
+    boost: 1.5
     dependencies:
       config:
         - field.storage.taxonomy_term.field_agrovoc_alternative_labels
@@ -60,6 +62,33 @@ field_settings:
     dependencies:
       config:
         - field.storage.taxonomy_term.field_agrovoc_related
+  field_agrovoc_transliterated_def:
+    label: 'Transliterated definition'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_agrovoc_transliterated_def
+    type: text
+    boost: 0.6
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_agrovoc_transliterated_def
+  field_agrovoc_transliterated_lab_1:
+    label: 'Transliterated labels'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_agrovoc_transliterated_lab
+    type: text
+    boost: 1.4
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_agrovoc_transliterated_lab
+  field_agrovoc_transliterated_tit:
+    label: 'Transliterated title'
+    datasource_id: 'entity:taxonomy_term'
+    property_path: field_agrovoc_transliterated_tit
+    type: text
+    boost: 8.0
+    dependencies:
+      config:
+        - field.storage.taxonomy_term.field_agrovoc_transliterated_tit
   field_agrovoc_uri:
     label: URI
     datasource_id: 'entity:taxonomy_term'
@@ -89,15 +118,6 @@ field_settings:
     property_path: language_with_fallback
     type: string
   name:
-    label: Name
-    datasource_id: 'entity:taxonomy_term'
-    property_path: name
-    type: text
-    boost: 13.0
-    dependencies:
-      module:
-        - taxonomy
-  name_str:
     label: 'Name string'
     datasource_id: 'entity:taxonomy_term'
     property_path: name
@@ -105,8 +125,8 @@ field_settings:
     dependencies:
       module:
         - taxonomy
-  name_tr:
-    label: 'Name translit'
+  name_ft:
+    label: 'Name fulltext'
     datasource_id: 'entity:taxonomy_term'
     property_path: name
     type: text
@@ -140,9 +160,20 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-    all_fields: false
+    all_fields: true
     fields:
+      - field_agrovoc_alternative_labels
+      - field_agrovoc_alternative_labels_ft
       - field_agrovoc_definition
+      - field_agrovoc_transliterated_def
+      - field_agrovoc_transliterated_lab_1
+      - field_agrovoc_transliterated_tit
+      - field_agrovoc_uri
+      - field_fao_agrovoc_code
+      - langcode
+      - language_with_fallback
+      - name
+      - name_ft
     ignorable: "['¿¡!?,.:;]"
     ignorable_classes:
       - Cf
@@ -161,55 +192,35 @@ processor_settings:
     all_fields: true
     fields:
       - field_agrovoc_alternative_labels
-      - field_agrovoc_alternative_labels_tr
+      - field_agrovoc_alternative_labels_ft
       - field_agrovoc_definition
+      - field_agrovoc_transliterated_def
+      - field_agrovoc_transliterated_lab_1
+      - field_agrovoc_transliterated_tit
       - field_agrovoc_uri
       - field_fao_agrovoc_code
       - langcode
       - language_with_fallback
       - name
-      - name_str
-      - name_tr
+      - name_ft
   language_with_fallback: {  }
   rendered_item: {  }
-  stemmer:
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-    all_fields: false
-    fields:
-      - field_agrovoc_alternative_labels
-      - field_agrovoc_alternative_labels_tr
-      - field_agrovoc_definition
-      - name
-      - name_tr
-    exceptions:
-      apple: apple
-      mexican: mexic
-      texan: texa
   tokenizer:
     weights:
       preprocess_index: -6
       preprocess_query: -6
-    all_fields: false
+    all_fields: true
     fields:
-      - field_agrovoc_alternative_labels
-      - field_agrovoc_alternative_labels_tr
+      - field_agrovoc_alternative_labels_ft
       - field_agrovoc_definition
-      - name
-      - name_tr
-    spaces: ''
+      - field_agrovoc_transliterated_def
+      - field_agrovoc_transliterated_lab_1
+      - field_agrovoc_transliterated_tit
+      - name_ft
+    spaces: ':'
     ignored: ._-
-    overlap_cjk: 1
+    overlap_cjk: 0
     minimum_word_size: '2'
-  transliteration:
-    weights:
-      preprocess_index: -20
-      preprocess_query: -20
-    all_fields: false
-    fields:
-      - field_agrovoc_alternative_labels_tr
-      - name_tr
 tracker_settings:
   default:
     indexing_order: fifo
@@ -217,4 +228,4 @@ options:
   cron_limit: 0
   index_directly: true
   track_changes_in_references: true
-server: default_server
+server: core_database_server_for_agrovoc

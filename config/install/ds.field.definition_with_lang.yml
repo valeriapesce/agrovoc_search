@@ -7,5 +7,5 @@ entities:
   taxonomy_term: taxonomy_term
 properties:
   content:
-    value: "<span id=\"[term:tid]-ag-definition\">[term:field_agrovoc_definition:value]</span>\r\n<script>\r\nif (\"[term:field_agrovoc_definition:value]\" == \"\" && \"[term:source:field_agrovoc_definition:value]\" != \"\") {\r\n  document.getElementById(\"[term:tid]-ag-definition\").innerHTML = \"<i>(English) [term:source:field_agrovoc_definition:value]</i>\";\r\n}\r\n</script>"
+    value: "<span id=\"[term:tid]-ag-definition\" class=\"text-collapse\">[term:field_agrovoc_definition:value]</span>\r\n<script>\r\nif (\"[term:field_agrovoc_definition:value]\" == \"\" && \"[term:source:field_agrovoc_definition:value]\" != \"\") {\r\n  document.getElementById(\"[term:tid]-ag-definition\").innerHTML = \"<i>(English) [term:source:field_agrovoc_definition:value]</i>\";\r\n}\r\n</script>"
     format: full_html_plaintext

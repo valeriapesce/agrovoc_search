@@ -1,0 +1,11 @@
+id: skosmos_url
+label: 'SKOSMOS URL'
+ui_limit: ''
+type: token
+type_label: 'Token field'
+entities:
+  taxonomy_term: taxonomy_term
+properties:
+  content:
+    value: '<p><span id="[term:tid]-skosmos-link"><a href="https://agrovoc.fao.org/browse/agrovoc/en/page/[term:field_fao_agrovoc_code]" target="_blank" class="skosmos-link">View &nearr;</a></span></p>'
+    format: full_html_plaintext

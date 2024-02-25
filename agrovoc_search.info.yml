@@ -6,7 +6,9 @@ core: 10.x
 core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:content_translation
+  - agrovoc_taxonomy_create_import_csv:agrovoc_taxonomy_create_import_csv
   - search_api:search_api
+  - search_api_db:search_api_db
   - search_api_autocomplete:search_api_autocomplete
   - views_accordion:views_accordion
   - ds:ds

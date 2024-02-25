@@ -1,17 +1,17 @@
 langcode: en
-status: false
+status: true
 dependencies:
   module:
     - search_api_db
-id: default_server
-name: 'Database Server'
-description: 'Default database server created by the Database Search Defaults module'
+id: core_database_server_for_agrovoc
+name: 'Database server for AGROVOC'
+description: 'Uses the Drupal database for AGROVOC searches'
 backend: search_api_db
 backend_config:
   database: 'default:default'
-  min_chars: 2
+  min_chars: 1
   matching: words
   phrase: bigram
   autocomplete:
     suggest_suffix: true
-    suggest_words: false
+    suggest_words: true

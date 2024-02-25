@@ -1,15 +1,58 @@
 <style>
-.small-text {font-size:0.9em;}
-.padding-top {padding-top:15px;}
-.padding-bottom {padding-bottom:15px;}
-.padding-right {padding-right:4px;}
-.inline {display: inline-block;}
-.right-border {border-right: 1px solid #676767;}
-.preferred {font-size:1.3em; font-weight: bold;}
-.no-line-space {margin-bottomo:0px; margin-top:0px; padding-bottom:0px; padding-top:4px;}
-ul.dropbutton a {text-decoration: none;}
-.ui-accordion-header-active {
+/* for the module */
+.view-agrovoc-search-searchapi .small-text,
+.agrovoc-small-text {font-size:0.9em;}
+.view-agrovoc-search-searchapi .bold,
+.agrovoc-bold {font-weight: bold;}
+.view-agrovoc-search-searchapi .padding-top,
+.agrovoc-padding-top {padding-top:15px;}
+.view-agrovoc-search-searchapi .padding-bottom,
+.agrovoc-padding-bottom {padding-bottom:15px;}
+.view-agrovoc-search-searchapi .padding-right,
+.agrovoc-padding-right {padding-right:4px;}
+.view-agrovoc-search-searchapi .inline,
+.agrovoc-inline {display: inline-block;}
+.view-agrovoc-search-searchapi .right-border,
+.agrovoc-right-border {border-right: 1px solid #676767;}
+.view-agrovoc-search-searchapi .align-right,
+.agrovoc-align-right {align: right;}
+.view-agrovoc-search-searchapi .clear-right,
+.agrovoc-clear-right {clear: right;}
+.view-agrovoc-search-searchapi .clear-left,
+.agrovoc-clear-left {clear: left;}
+.view-agrovoc-search-searchapi .clear,
+.agrovoc-clear {clear: both;}
+.view-agrovoc-search-searchapi .float-left,
+.agrovoc-float-left {float:left;}
+.view-agrovoc-search-searchapi .float-right,
+.agrovoc-float-right {float:right;}
+.view-agrovoc-search-searchapi .float-none,
+.agrovoc-float-none {float:none;}
+.view-agrovoc-search-searchapi .no-underline,
+.agrovoc-no-underline {text-decoration: none;}
+.view-agrovoc-search-searchapi .preferred,
+.agrovoc-preferred {font-size:1.3em; font-weight: bold;}
+.view-agrovoc-search-searchapi .no-line-space,
+.agrovoc-no-line-space {margin-bottomo:0px; margin-top:0px; padding-bottom:0px; padding-top:4px;}
+.view-agrovoc-search-searchapi .term-link-multiple {height:20px;}
+.view-agrovoc-search-searchapi .term-link-multiple:last-child {border:none;}
+.view-agrovoc-search-searchapi .label-multiple:last-child {border:none;}
+.view-agrovoc-search-searchapi .skosmos-link {color: #4F87B1!important; text-decoration:none;}
+.view-agrovoc-search-searchapi ul.dropbutton a {text-decoration: none;}
+.view-agrovoc-search-searchapi .ui-accordion-header-active {
     border: 1px solid maroon;
     background: #4F87B1;
 }
+.views-field-search-api-rendered-item .group-left {padding-right:12px; float:left; width:50%;}
+.view-agrovoc-search-searchapi .text-collapse {
+  font-size:0.9em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.view-agrovoc-search-searchapi .text-collapse:hover {
+  -webkit-line-clamp: unset;
+}
+.view-agrovoc table tr th, table tr th a, table tr th a:hover, table tr th a:focus {color: #4F87B1;}
 </style>
