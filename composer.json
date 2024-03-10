@@ -16,11 +16,11 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/10"
-        }
+        },
         "valeriapesce/agrovoc_taxonomy_create_import_csv": {
             "type": "git",
             "url": "https://github.com/valeriapesce/agrovoc_taxonomy_create_import_csv"
-        },
+        }
     },
     "require": {
         "drupal/search_api": ">=1.3",
@@ -34,11 +34,12 @@
 		"drupal/taxonomy_term_depth": "^2.6",		
 		"cweagans/composer-patches": "~1.0",
         "valeriapesce/agrovoc_taxonomy_create_import_csv": "*"
-		}
+	},
 	"extra": {
-	"patches": {
-	  "drupal/search_api": {
-		"SarchApi: don't exclude exact matches from suggestions": "https://github.com/valeriapesce/drupal_patches/blob/main/searchapi_include-exact-match-suggestions.patch"
-	  }
+		"patches": {
+		  "drupal/search_api": {
+			"SarchApi: don't exclude exact matches from suggestions": "https://github.com/valeriapesce/drupal_patches/blob/main/searchapi_include-exact-match-suggestions.patch"
+		  }
+		}
 	}
-  }}
+}
