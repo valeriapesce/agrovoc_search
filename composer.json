@@ -45,7 +45,7 @@
 		"enable-patching": true,
 		"patches": {
 		  "drupal/search_api": {
-			"SarchApi: don't exclude exact matches from suggestions": "https://raw.githubusercontent.com/valeriapesce/drupal_patches/main/searchapi_include-exact-match-suggestions.patch"
+			"SarchApi: don't exclude exact matches from suggestions": "./patches/searchapi_include-exact-match-suggestions.patch"
 		  }
 		}
 	}
