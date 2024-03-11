@@ -8,105 +8,27 @@ use \Drupal\search_api\Query\ConditionGroupInterface;
 */
 function agrovoc_search_views_pre_render(ViewExecutable $view) {
 
-	\Drupal::logger('agrovoc_search')->notice('Hook view');	
-
   if (isset($view) && ($view->storage->id() == 'agrovoc_search_searchapi')) {
     $view->element['#attached']['library'][] = 'agrovoc_search/agrovoc-search';
   }
 }
+
 /*
-function agrovoc_search_search_api_query_alter(\Drupal\search_api\Query\QueryInterface $query) {
+function agrovoc_search_search_api_db_query_alter(\Drupal\Core\Database\Query\SelectInterface &$db_query, \Drupal\search_api\Query\QueryInterface $query) {
 	// Attempt to alter the query for the auocomplete, but the search keys are not present and it seems it's not executed when creating the suggestions
 	// Tried with an event subscribeer to \Drupal\search_api_db\Event\SearchApiDbEventsQUERY_PRE_EXECUTE, but same problem
 	// Possible solution: patch to delete line 3034: 
 	// ->condition('t.word', $keys, 'NOT IN')
 	// from /web/modules/contrib/search_api/modules/search_api_db/src/Plugin/search_api/backend/Database.php
-*/
-
-function CheckCondition ($condition, $query, $start) {
-	$i = $start;
-	$cstring = $condition->__toString();
-	$type = "";
-	if ($condition instanceof \Drupal\search_api\Query\ConditionInterface || $condition instanceof \Drupal\search_api\Query\Condition) {
-		$type = "Condition";
-		\Drupal::logger('agrovoc_search')->notice('DEBUG hook: Condition @num field: @cond.',
-			  array(
-				'@num' => $i,
-				'@con' => $cstring,
-				'@type' => $type
-				));	
-	} else {
-		$i++;
-		$type = "Condition";
-		\Drupal::logger('agrovoc_search')->notice('DEBUG hook: Condition @num field: @cond.',
-			  array(
-				'@num' => $i,
-				'@con' => $cstring,
-				'@type' => $type
-				));	
-		foreach ($condition->getConditions() as $key2 => $condition2) {
-			CheckCondition ($condition2, $query, $i);
-		}
-	}	
-	$i++;
-}
-
-	/*
-
-function agrovoc_search_search_api_db_query_alter(\Drupal\Core\Database\Query\SelectInterface &$db_query, \Drupal\search_api\Query\QueryInterface $query) {
-
-	$dbq = &$db_query;
-	$q = $query;
-	
-	$dbq->condition('t.word', $q->getKeys(), '=');
-	
-	if (!$q->hasTag('agrovoc_fix')) {
-
-		$conditionsG = $q->getConditionGroup();
-		$qstring = $q->__toString();
-		\Drupal::logger('agrovoc_search')->notice('DEBUG hook: query before: @q, Condition group conditions count: @val.',
-			  array(
-				'@val' => print_r(strval(count($q->getConditionGroup()->getConditions())), 1),
-				'@q' => $qstring
-				));	
-		
-		$newGroup = new \Drupal\search_api\Query\ConditionGroup ('OR', []);
-		$conditionsG->addConditionGroup($newGroup)->addCondition('word', $suggestions[0]->getUserInput(), '=');
-		//$newGroup = $q->createAndAddConditionGroup('OR', []); // NO: each query only has one main ConditionGroup
-
-		$qstring = $q->__toString();
-		\Drupal::logger('agrovoc_search')->notice('DEBUG hook: query after: @q, Condition group conditions count: @val.',
-			  array(
-				'@val' => print_r(strval(count($q->getConditionGroup()->getConditions())), 1),
-				'@q' => $qstring
-				));	
-
-		foreach ($conditionsG->getConditions() as $key => $condition) {
-			CheckCondition ($condition, $q, 1);
-		}
-
-		$q->addTag('agrovoc_fix');
-		//$q->execute();
-	}
-
-
-  // Hook example:
-  // If the option was set on the query, add additional SQL conditions.
-  if ($custom = $query->getOption('custom_sql_conditions')) {
-    foreach ($custom as $condition) {
-      $db_query->condition($condition['field'], $condition['value'], $condition['operator']);
-    }
-  }
 }
 */
-
 
 function agrovoc_search_search_api_autocomplete_suggestions_alter(array &$suggestions, array $alter_params) {
 
 	// Implements hook_search_api_autocomplete_suggestions_alter:
 	//
 	// If the exact word searched is in the suggestions, SearchApi doesn't put it as first element of the suggestions array:
-	// this function takes the exact match and puts it as first suggestion
+	// this function takes the exact match )if it is in the suggestions, which means it exists as a word) and puts it as first suggestion.
 	
 	/* 
 	$alter_params = [
